@@ -1,6 +1,12 @@
-# Compileq
+# Compileq — AI Compliance Scanner and MCP Server
 
 **Built by [Psylinks Security Private Limited](https://psylinkssecurity.com)**
+
+[![CI](https://github.com/PsylinksSecurityWeb/Compileq/actions/workflows/ci.yml/badge.svg)](https://github.com/PsylinksSecurityWeb/Compileq/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/PsylinksSecurityWeb/Compileq?label=release)](https://github.com/PsylinksSecurityWeb/Compileq/releases)
+[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![MCP server](https://img.shields.io/badge/MCP-server-7C3AED)](./mcp_server/server.py)
+[![License: Proprietary](https://img.shields.io/badge/license-proprietary-red)](./LICENSE)
 
 Compileq scans a codebase for likely compliance gaps — GDPR, CCPA/CPRA,
 WCAG, PCI-DSS, HIPAA, EU AI Act, LGPD, COPPA, PIPEDA, and more via an
@@ -10,7 +16,7 @@ Claude Skill or as an MCP server, so it works inside Claude Code, Claude
 Cowork, Cursor, VS Code + Copilot, Windsurf, or any other MCP-compatible
 IDE.
 
-> ⚠️ **This repository is proprietary software, not open source.** It is distributed through a private GitHub repository and licensed channels only.
+> ⚠️ **This repository is public for product discovery, but the software is proprietary, not open source.** Public visibility does not grant permission to copy, fork, redistribute, sublicense, or create derivative works. See [`LICENSE`](./LICENSE).
 > Copyright © Psylinks Security Private Limited. All rights reserved. Do
 > not fork, redistribute, or publish this code publicly. See [`LICENSE`](./LICENSE)
 > for the full terms. If you found this repository without authorization,
@@ -39,6 +45,21 @@ IDE.
 - **This is a triage tool, not legal advice or a certification.** Every
   report says so, and confidence scores exist precisely so low-certainty
   findings are never presented as fact.
+
+## Why teams use Compileq
+
+Compileq is designed for founders, engineering teams, security reviewers,
+privacy teams, accessibility specialists, and AI-assisted development
+workflows that need an early compliance signal before launch. It helps turn
+questions such as “are we GDPR-ready?”, “does this signup flow create CCPA
+risk?”, “are our payment forms PCI-DSS-sensitive?”, and “does this AI feature
+need EU AI Act review?” into a traceable engineering triage report.
+
+It is useful for privacy compliance scanning, GDPR and CCPA readiness reviews,
+WCAG accessibility checks, PCI-DSS payment-flow triage, HIPAA-sensitive code
+review, EU AI Act preparation, LGPD/COPPA/PIPEDA checks, and MCP-enabled AI
+code review in Claude, Cursor, Codex, VS Code, Copilot, Windsurf, and other
+compatible tools.
 
 ## Quick start
 

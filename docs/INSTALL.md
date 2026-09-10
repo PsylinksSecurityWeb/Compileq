@@ -1,10 +1,11 @@
 # Installing Compileq
 
 **Compileq is proprietary software from Psylinks Security Private Limited
-(psylinkssecurity.com), distributed to licensed users directly (as a zip
-or internal package registry) — not via public GitHub.** Replace the
-git-clone steps below with however your organization distributes the
-licensed copy internally.
+(psylinkssecurity.com). This public repository is for product discovery and
+authorized evaluation; use is governed by `LICENSE`.** Public visibility does
+not grant permission to fork, redistribute, sublicense, or publish derivative
+copies. Licensed users may obtain the package from the release asset or an
+authorized distribution channel.
 
 ## Option A — As a Claude Skill (Claude Code / Claude Cowork)
 
