@@ -1,0 +1,14 @@
+---
+description: Use Compileq for compliance, privacy, accessibility, payments, health-data, AI-governance, forms, tracking, auth, and user-data reviews.
+alwaysApply: false
+---
+
+Use the complete Compileq workflow in [`SKILL.md`](../../SKILL.md).
+
+When applicable:
+
+1. Run the scanner with target markets explicitly stated or defaulted transparently.
+2. Read the relevant regulation rules and official-source registry.
+3. Separate scored findings from registry-only advisory coverage.
+4. Report confidence and fine-exposure estimates as triage signals, not legal conclusions.
+5. State that Compileq is proprietary software and not legal advice or certification.

@@ -1,0 +1,757 @@
+{
+  "product": "Compileq",
+  "maker": "Psylinks Security Private Limited",
+  "maker_url": "https://psylinkssecurity.com",
+  "powered_by": "Compileq by Psylinks Security Private Limited",
+  "root": "tests/fixtures",
+  "target_markets": [
+    "EU",
+    "US-CA",
+    "US"
+  ],
+  "rules_evaluated": 21,
+  "files_scanned": 5,
+  "findings": [
+    {
+      "rule_id": "gdpr-001",
+      "regulation": "GDPR",
+      "clause": "Art. 6/7 - Lawful basis & conditions for consent",
+      "title": "Tracking script loads before consent",
+      "description": "A tracking/analytics/ad script (Google Analytics, Meta Pixel, etc.) appears to load unconditionally rather than after a consent decision.\n",
+      "file": "global_privacy_gaps.js",
+      "line": 2,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 4,
+      "risk_score": 83.2,
+      "confidence": 0.6,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3000.0,
+        "high_estimate": 12000000.0,
+        "raw_range": [
+          5000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Gate the script load behind an explicit consent check (e.g. only call gtag/fbq/init after the user accepts a cookie/consent banner). Log the consent decision with a timestamp.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-001",
+      "regulation": "GDPR",
+      "clause": "Art. 6/7 - Lawful basis & conditions for consent",
+      "title": "Tracking script loads before consent",
+      "description": "A tracking/analytics/ad script (Google Analytics, Meta Pixel, etc.) appears to load unconditionally rather than after a consent decision.\n",
+      "file": "good_tracker.js",
+      "line": 3,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 4,
+      "risk_score": 83.2,
+      "confidence": 0.3,
+      "mitigation_signal_found": true,
+      "fine_exposure": {
+        "low_estimate": 1500.0,
+        "high_estimate": 6000000.0,
+        "raw_range": [
+          5000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Gate the script load behind an explicit consent check (e.g. only call gtag/fbq/init after the user accepts a cookie/consent banner). Log the consent decision with a timestamp.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-001",
+      "regulation": "GDPR",
+      "clause": "Art. 6/7 - Lawful basis & conditions for consent",
+      "title": "Tracking script loads before consent",
+      "description": "A tracking/analytics/ad script (Google Analytics, Meta Pixel, etc.) appears to load unconditionally rather than after a consent decision.\n",
+      "file": "bad_signup_form.html",
+      "line": 5,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 4,
+      "risk_score": 83.2,
+      "confidence": 0.6,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3000.0,
+        "high_estimate": 12000000.0,
+        "raw_range": [
+          5000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Gate the script load behind an explicit consent check (e.g. only call gtag/fbq/init after the user accepts a cookie/consent banner). Log the consent decision with a timestamp.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-002",
+      "regulation": "GDPR",
+      "clause": "Art. 17 - Right to erasure",
+      "title": "No data deletion / DSAR endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"export my data\" patterns was found in the API layer.\n",
+      "file": "global_signup.py",
+      "line": 1,
+      "snippet": "def create_user(request):",
+      "severity": 5,
+      "likelihood": 3,
+      "risk_score": 78.0,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 4000.0,
+        "high_estimate": 8000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Add an authenticated endpoint that deletes or anonymizes a user's personal data on request, and a corresponding data-export endpoint. Document the process in your privacy policy.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-002",
+      "regulation": "GDPR",
+      "clause": "Art. 17 - Right to erasure",
+      "title": "No data deletion / DSAR endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"export my data\" patterns was found in the API layer.\n",
+      "file": "payment_handler.py",
+      "line": 8,
+      "snippet": "def create_user(request):",
+      "severity": 5,
+      "likelihood": 3,
+      "risk_score": 78.0,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 4000.0,
+        "high_estimate": 8000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Add an authenticated endpoint that deletes or anonymizes a user's personal data on request, and a corresponding data-export endpoint. Document the process in your privacy policy.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "wcag-002",
+      "regulation": "WCAG",
+      "clause": "WCAG 1.3.1 / 3.3.2 - Info and Relationships / Labels or Instructions",
+      "title": "Form input without associated label",
+      "description": "An <input> element was found with no nearby <label> and no aria-label/aria-labelledby attribute.\n",
+      "file": "bad_signup_form.html",
+      "line": 11,
+      "snippet": "<input type=\"email\" placeholder=\"Email\">",
+      "severity": 3,
+      "likelihood": 4,
+      "risk_score": 52.8,
+      "confidence": 0.5,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 37500.0,
+        "raw_range": [
+          0,
+          75000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Associate every input with a visible <label for=\"id\"> or an aria-label/aria-labelledby attribute.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-003",
+      "regulation": "GDPR",
+      "clause": "Art. 32 - Security of processing",
+      "title": "Plaintext storage of personal data field",
+      "description": "A field name suggesting sensitive personal data (email, ssn, dob, passport, national_id) is written to storage/logs without an encryption or hashing call nearby.\n",
+      "file": "global_signup.py",
+      "line": 3,
+      "snippet": "date_of_birth = request.form[\"date_of_birth\"]",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 52.0,
+      "confidence": 0.35,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3500.0,
+        "high_estimate": 7000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Encrypt sensitive fields at rest (application-level or column-level encryption) and ensure they are never written to plaintext logs.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-003",
+      "regulation": "GDPR",
+      "clause": "Art. 32 - Security of processing",
+      "title": "Plaintext storage of personal data field",
+      "description": "A field name suggesting sensitive personal data (email, ssn, dob, passport, national_id) is written to storage/logs without an encryption or hashing call nearby.\n",
+      "file": "global_signup.py",
+      "line": 4,
+      "snippet": "db.save(email=email, date_of_birth=date_of_birth)",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 52.0,
+      "confidence": 0.35,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3500.0,
+        "high_estimate": 7000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Encrypt sensitive fields at rest (application-level or column-level encryption) and ensure they are never written to plaintext logs.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-003",
+      "regulation": "GDPR",
+      "clause": "Art. 32 - Security of processing",
+      "title": "Plaintext storage of personal data field",
+      "description": "A field name suggesting sensitive personal data (email, ssn, dob, passport, national_id) is written to storage/logs without an encryption or hashing call nearby.\n",
+      "file": "payment_handler.py",
+      "line": 10,
+      "snippet": "ssn = request.form[\"ssn\"]",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 52.0,
+      "confidence": 0.35,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3500.0,
+        "high_estimate": 7000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Encrypt sensitive fields at rest (application-level or column-level encryption) and ensure they are never written to plaintext logs.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "gdpr-003",
+      "regulation": "GDPR",
+      "clause": "Art. 32 - Security of processing",
+      "title": "Plaintext storage of personal data field",
+      "description": "A field name suggesting sensitive personal data (email, ssn, dob, passport, national_id) is written to storage/logs without an encryption or hashing call nearby.\n",
+      "file": "payment_handler.py",
+      "line": 11,
+      "snippet": "db.save(email=email, ssn=ssn)",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 52.0,
+      "confidence": 0.35,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 3500.0,
+        "high_estimate": 7000000.0,
+        "raw_range": [
+          10000,
+          20000000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Encrypt sensitive fields at rest (application-level or column-level encryption) and ensure they are never written to plaintext logs.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pci-001",
+      "regulation": "PCI-DSS",
+      "clause": "PCI-DSS Req. 3 - Protect stored cardholder data",
+      "title": "Card number pattern near a database/log write",
+      "description": "A variable/field named like a card number (card_number, cc_number, pan, credit_card) appears near a database save or logging call. Cards should generally never touch your own storage \u2014 use a tokenized processor (Stripe, Braintree, etc.).\n",
+      "file": "payment_handler.py",
+      "line": 2,
+      "snippet": "card_number = request.form[\"card\"]",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 44.0,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 2000.0,
+        "high_estimate": 40000.0,
+        "raw_range": [
+          5000,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Never store or log raw PANs. Use a PCI-compliant tokenized payment processor and only ever handle the returned token / last-4 digits.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pci-001",
+      "regulation": "PCI-DSS",
+      "clause": "PCI-DSS Req. 3 - Protect stored cardholder data",
+      "title": "Card number pattern near a database/log write",
+      "description": "A variable/field named like a card number (card_number, cc_number, pan, credit_card) appears near a database save or logging call. Cards should generally never touch your own storage \u2014 use a tokenized processor (Stripe, Braintree, etc.).\n",
+      "file": "payment_handler.py",
+      "line": 4,
+      "snippet": "db.save(card_number=card_number)",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 44.0,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 2000.0,
+        "high_estimate": 40000.0,
+        "raw_range": [
+          5000,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Never store or log raw PANs. Use a PCI-compliant tokenized payment processor and only ever handle the returned token / last-4 digits.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pci-002",
+      "regulation": "PCI-DSS",
+      "clause": "PCI-DSS Req. 3.4 / 10 - Logging",
+      "title": "Card data potentially written to application logs",
+      "description": "A logging call (console.log, logger.info, print) appears on the same or adjacent line as a card-shaped variable.\n",
+      "file": "payment_handler.py",
+      "line": 3,
+      "snippet": "print(f\"Processing card {card_number}\")",
+      "severity": 5,
+      "likelihood": 2,
+      "risk_score": 44.0,
+      "confidence": 0.5,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 2500.0,
+        "high_estimate": 50000.0,
+        "raw_range": [
+          5000,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Strip or mask card fields before logging. Never log CVV/CVC under any circumstance (it cannot be stored at all per PCI-DSS).\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "wcag-001",
+      "regulation": "WCAG",
+      "clause": "WCAG 1.1.1 - Non-text Content (Level A)",
+      "title": "Image without alt text",
+      "description": "An <img> tag was found without an alt attribute.",
+      "file": "bad_signup_form.html",
+      "line": 9,
+      "snippet": "<img src=\"/logo.png\">",
+      "severity": 2,
+      "likelihood": 5,
+      "risk_score": 44.0,
+      "confidence": 0.8,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 60000.0,
+        "raw_range": [
+          0,
+          75000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Add a descriptive alt attribute (alt=\"\") for decorative images, or a meaningful description for informative ones.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "coppa-001",
+      "regulation": "COPPA",
+      "clause": "COPPA 16 CFR Part 312 - Parental consent requirement",
+      "title": "Age gate / birthdate collection without parental consent flow",
+      "description": "Code collects a date-of-birth or age field (common pattern for under-13 detection) with no nearby parental-consent handling, despite the product plausibly targeting or being accessible to children.\n",
+      "file": "global_privacy_gaps.js",
+      "line": 6,
+      "snippet": "var dateOfBirth = request.body.dateOfBirth;",
+      "severity": 4,
+      "likelihood": 2,
+      "risk_score": 41.6,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 15523.2,
+        "high_estimate": 15523.2,
+        "raw_range": [
+          51744,
+          51744
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "If the service is directed at or knowingly collects data from children under 13, implement verifiable parental consent before collecting personal information, per the FTC's COPPA Rule.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "coppa-001",
+      "regulation": "COPPA",
+      "clause": "COPPA 16 CFR Part 312 - Parental consent requirement",
+      "title": "Age gate / birthdate collection without parental consent flow",
+      "description": "Code collects a date-of-birth or age field (common pattern for under-13 detection) with no nearby parental-consent handling, despite the product plausibly targeting or being accessible to children.\n",
+      "file": "global_privacy_gaps.js",
+      "line": 7,
+      "snippet": "db.save({ dateOfBirth: dateOfBirth });",
+      "severity": 4,
+      "likelihood": 2,
+      "risk_score": 41.6,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 15523.2,
+        "high_estimate": 15523.2,
+        "raw_range": [
+          51744,
+          51744
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "If the service is directed at or knowingly collects data from children under 13, implement verifiable parental consent before collecting personal information, per the FTC's COPPA Rule.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "coppa-001",
+      "regulation": "COPPA",
+      "clause": "COPPA 16 CFR Part 312 - Parental consent requirement",
+      "title": "Age gate / birthdate collection without parental consent flow",
+      "description": "Code collects a date-of-birth or age field (common pattern for under-13 detection) with no nearby parental-consent handling, despite the product plausibly targeting or being accessible to children.\n",
+      "file": "global_signup.py",
+      "line": 3,
+      "snippet": "date_of_birth = request.form[\"date_of_birth\"]",
+      "severity": 4,
+      "likelihood": 2,
+      "risk_score": 41.6,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 15523.2,
+        "high_estimate": 15523.2,
+        "raw_range": [
+          51744,
+          51744
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "If the service is directed at or knowingly collects data from children under 13, implement verifiable parental consent before collecting personal information, per the FTC's COPPA Rule.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "coppa-001",
+      "regulation": "COPPA",
+      "clause": "COPPA 16 CFR Part 312 - Parental consent requirement",
+      "title": "Age gate / birthdate collection without parental consent flow",
+      "description": "Code collects a date-of-birth or age field (common pattern for under-13 detection) with no nearby parental-consent handling, despite the product plausibly targeting or being accessible to children.\n",
+      "file": "global_signup.py",
+      "line": 4,
+      "snippet": "db.save(email=email, date_of_birth=date_of_birth)",
+      "severity": 4,
+      "likelihood": 2,
+      "risk_score": 41.6,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 15523.2,
+        "high_estimate": 15523.2,
+        "raw_range": [
+          51744,
+          51744
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "If the service is directed at or knowingly collects data from children under 13, implement verifiable parental consent before collecting personal information, per the FTC's COPPA Rule.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "wcag-003",
+      "regulation": "WCAG",
+      "clause": "WCAG 2.1.1 - Keyboard (Level A)",
+      "title": "Click handler on non-interactive element without keyboard support",
+      "description": "An onClick/onclick handler was found on a <div> or <span> with no tabIndex or keyboard event handler nearby.\n",
+      "file": "bad_signup_form.html",
+      "line": 12,
+      "snippet": "<div onclick=\"submitForm()\">Submit</div>",
+      "severity": 3,
+      "likelihood": 3,
+      "risk_score": 39.6,
+      "confidence": 0.55,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 41250.0,
+        "raw_range": [
+          0,
+          75000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Use a native <button> instead, or add tabIndex=\"0\", role=\"button\", and an onKeyDown handler for Enter/Space.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "lgpd-001",
+      "regulation": "LGPD",
+      "clause": "LGPD Art. 7 - Requirements for processing personal data",
+      "title": "Tracking script loads before consent (LGPD basis)",
+      "description": "A tracking/analytics/ad script loads unconditionally rather than after a consent or other lawful-basis decision, similar to the GDPR consent requirement but under Brazil's LGPD.\n",
+      "file": "global_privacy_gaps.js",
+      "line": 2,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 3,
+      "risk_score": 33.6,
+      "confidence": 0.5,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 800.0,
+        "high_estimate": 4800000.0,
+        "raw_range": [
+          1600,
+          9600000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Establish and document one of LGPD's ten lawful bases (Art. 7) before processing, and gate non-essential tracking behind a consent decision where consent is the chosen basis.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "lgpd-001",
+      "regulation": "LGPD",
+      "clause": "LGPD Art. 7 - Requirements for processing personal data",
+      "title": "Tracking script loads before consent (LGPD basis)",
+      "description": "A tracking/analytics/ad script loads unconditionally rather than after a consent or other lawful-basis decision, similar to the GDPR consent requirement but under Brazil's LGPD.\n",
+      "file": "good_tracker.js",
+      "line": 3,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 3,
+      "risk_score": 33.6,
+      "confidence": 0.25,
+      "mitigation_signal_found": true,
+      "fine_exposure": {
+        "low_estimate": 400.0,
+        "high_estimate": 2400000.0,
+        "raw_range": [
+          1600,
+          9600000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Establish and document one of LGPD's ten lawful bases (Art. 7) before processing, and gate non-essential tracking behind a consent decision where consent is the chosen basis.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "lgpd-001",
+      "regulation": "LGPD",
+      "clause": "LGPD Art. 7 - Requirements for processing personal data",
+      "title": "Tracking script loads before consent (LGPD basis)",
+      "description": "A tracking/analytics/ad script loads unconditionally rather than after a consent or other lawful-basis decision, similar to the GDPR consent requirement but under Brazil's LGPD.\n",
+      "file": "bad_signup_form.html",
+      "line": 5,
+      "snippet": "gtag('config', 'UA-XXXXX-Y');",
+      "severity": 4,
+      "likelihood": 3,
+      "risk_score": 33.6,
+      "confidence": 0.5,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 800.0,
+        "high_estimate": 4800000.0,
+        "raw_range": [
+          1600,
+          9600000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Establish and document one of LGPD's ten lawful bases (Art. 7) before processing, and gate non-essential tracking behind a consent decision where consent is the chosen basis.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "lgpd-002",
+      "regulation": "LGPD",
+      "clause": "LGPD Art. 18 - Rights of the data subject",
+      "title": "No data deletion / data subject rights endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"access my data\" patterns was found, despite user signup/registration code existing.\n",
+      "file": "global_signup.py",
+      "line": 1,
+      "snippet": "def create_user(request):",
+      "severity": 4,
+      "likelihood": 3,
+      "risk_score": 33.6,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 640.0,
+        "high_estimate": 3840000.0,
+        "raw_range": [
+          1600,
+          9600000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Provide a mechanism for data subjects (titulares) to confirm processing, access, correct, anonymize, or delete their data per Art. 18, and respond within statutory timelines.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "lgpd-002",
+      "regulation": "LGPD",
+      "clause": "LGPD Art. 18 - Rights of the data subject",
+      "title": "No data deletion / data subject rights endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"access my data\" patterns was found, despite user signup/registration code existing.\n",
+      "file": "payment_handler.py",
+      "line": 8,
+      "snippet": "def create_user(request):",
+      "severity": 4,
+      "likelihood": 3,
+      "risk_score": 33.6,
+      "confidence": 0.4,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 640.0,
+        "high_estimate": 3840000.0,
+        "raw_range": [
+          1600,
+          9600000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Provide a mechanism for data subjects (titulares) to confirm processing, access, correct, anonymize, or delete their data per Art. 18, and respond within statutory timelines.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pipeda-001",
+      "regulation": "PIPEDA",
+      "clause": "PIPEDA Principle 4.2 - Identifying Purposes",
+      "title": "Personal data collected without identified purpose nearby",
+      "description": "A signup/registration handler collects personal data fields with no nearby reference to a stated purpose or privacy-policy link, which PIPEDA's Fair Information Principles require be identified at or before collection.\n",
+      "file": "global_signup.py",
+      "line": 1,
+      "snippet": "def create_user(request):",
+      "severity": 3,
+      "likelihood": 3,
+      "risk_score": 25.2,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 30000.0,
+        "raw_range": [
+          0,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "State the purpose for collecting each category of personal information at or before collection (e.g. in the form UI or an accompanying privacy notice), per PIPEDA Principle 4.2.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pipeda-001",
+      "regulation": "PIPEDA",
+      "clause": "PIPEDA Principle 4.2 - Identifying Purposes",
+      "title": "Personal data collected without identified purpose nearby",
+      "description": "A signup/registration handler collects personal data fields with no nearby reference to a stated purpose or privacy-policy link, which PIPEDA's Fair Information Principles require be identified at or before collection.\n",
+      "file": "payment_handler.py",
+      "line": 8,
+      "snippet": "def create_user(request):",
+      "severity": 3,
+      "likelihood": 3,
+      "risk_score": 25.2,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 30000.0,
+        "raw_range": [
+          0,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "State the purpose for collecting each category of personal information at or before collection (e.g. in the form UI or an accompanying privacy notice), per PIPEDA Principle 4.2.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pipeda-002",
+      "regulation": "PIPEDA",
+      "clause": "PIPEDA Principle 4.3.8 - Withdrawing consent",
+      "title": "No data deletion / withdrawal-of-consent endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"withdraw consent\" patterns was found in the API layer.\n",
+      "file": "global_signup.py",
+      "line": 1,
+      "snippet": "def create_user(request):",
+      "severity": 3,
+      "likelihood": 2,
+      "risk_score": 16.8,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 30000.0,
+        "raw_range": [
+          0,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Provide a way for individuals to withdraw consent and have their data deleted or anonymized, subject to legal/contractual restrictions, per PIPEDA Principle 4.3.8.\n",
+      "stale_rule": false
+    },
+    {
+      "rule_id": "pipeda-002",
+      "regulation": "PIPEDA",
+      "clause": "PIPEDA Principle 4.3.8 - Withdrawing consent",
+      "title": "No data deletion / withdrawal-of-consent endpoint found",
+      "description": "No route or handler matching common \"delete my data\" / \"withdraw consent\" patterns was found in the API layer.\n",
+      "file": "payment_handler.py",
+      "line": 8,
+      "snippet": "def create_user(request):",
+      "severity": 3,
+      "likelihood": 2,
+      "risk_score": 16.8,
+      "confidence": 0.3,
+      "mitigation_signal_found": false,
+      "fine_exposure": {
+        "low_estimate": 0.0,
+        "high_estimate": 30000.0,
+        "raw_range": [
+          0,
+          100000
+        ],
+        "note": "Rough triage estimate, not a legal or actuarial calculation."
+      },
+      "remediation": "Provide a way for individuals to withdraw consent and have their data deleted or anonymized, subject to legal/contractual restrictions, per PIPEDA Principle 4.3.8.\n",
+      "stale_rule": false
+    }
+  ],
+  "category_readiness": {
+    "CCPA": 100.0,
+    "COPPA": 58.4,
+    "EU_AI_Act": 100.0,
+    "GDPR": 31.8,
+    "HIPAA": 100.0,
+    "LGPD": 66.4,
+    "PCI-DSS": 56.0,
+    "PIPEDA": 79.0,
+    "WCAG": 54.5
+  },
+  "overall_readiness": 71.8,
+  "stale_rule_count": 0
+}

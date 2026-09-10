@@ -1,0 +1,38 @@
+regulation: CCPA
+jurisdiction: [US-CA]
+rules:
+  - id: ccpa-001
+    title: No "Do Not Sell or Share My Personal Information" mechanism
+    clause: "Cal. Civ. Code 1798.135 - Right to opt-out of sale/sharing"
+    description: >
+      Ad-network or data-broker style calls exist (ad pixels, audience
+      syncing) but no opt-out link/component pattern was found.
+    file_types: [".html", ".js", ".jsx", ".tsx"]
+    pattern: "(doubleclick\\.net|adroll|criteo|audience.*sync|/pixel\\?)"
+    negative_pattern: "(do-not-sell|doNotSell|optOutLink|globalPrivacyControl|GPC)"
+    severity: 4
+    likelihood: 3
+    confidence_base: 0.5
+    fine_range: [2500, 7500]
+    remediation: >
+      Add a visible "Do Not Sell or Share My Personal Information" link, and
+      honor the Global Privacy Control (GPC) browser signal automatically.
+    last_verified: "2026-06-01"
+
+  - id: ccpa-002
+    title: Global Privacy Control signal not handled
+    clause: "CPRA regs - GPC as a valid opt-out signal"
+    description: >
+      No code reads the `Sec-GPC` header or `navigator.globalPrivacyControl`
+      despite the app collecting/sharing personal data.
+    file_types: [".js", ".ts", ".py"]
+    pattern: "(track\\(|analytics\\.|third_party_share)"
+    negative_pattern: "(Sec-GPC|globalPrivacyControl|GPC)"
+    severity: 3
+    likelihood: 3
+    confidence_base: 0.3
+    fine_range: [2500, 7500]
+    remediation: >
+      Check the Sec-GPC request header (or navigator.globalPrivacyControl
+      client-side) and automatically treat it as an opt-out request.
+    last_verified: "2026-06-01"

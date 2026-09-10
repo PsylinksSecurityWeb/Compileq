@@ -1,0 +1,54 @@
+regulation: WCAG
+jurisdiction: [Global, US, EU]
+rules:
+  - id: wcag-001
+    title: Image without alt text
+    clause: "WCAG 1.1.1 - Non-text Content (Level A)"
+    description: An <img> tag was found without an alt attribute.
+    file_types: [".html", ".jsx", ".tsx", ".vue"]
+    pattern: "<img(?![^>]*alt=)[^>]*>"
+    negative_pattern: null
+    severity: 2
+    likelihood: 5
+    confidence_base: 0.8
+    fine_range: [0, 75000]
+    remediation: >
+      Add a descriptive alt attribute (alt="") for decorative images, or a
+      meaningful description for informative ones.
+    last_verified: "2026-06-01"
+
+  - id: wcag-002
+    title: Form input without associated label
+    clause: "WCAG 1.3.1 / 3.3.2 - Info and Relationships / Labels or Instructions"
+    description: >
+      An <input> element was found with no nearby <label> and no
+      aria-label/aria-labelledby attribute.
+    file_types: [".html", ".jsx", ".tsx", ".vue"]
+    pattern: "<input(?![^>]*aria-label)(?![^>]*aria-labelledby)[^>]*>"
+    negative_pattern: "<label"
+    severity: 3
+    likelihood: 4
+    confidence_base: 0.5
+    fine_range: [0, 75000]
+    remediation: >
+      Associate every input with a visible <label for="id"> or an
+      aria-label/aria-labelledby attribute.
+    last_verified: "2026-06-01"
+
+  - id: wcag-003
+    title: Click handler on non-interactive element without keyboard support
+    clause: "WCAG 2.1.1 - Keyboard (Level A)"
+    description: >
+      An onClick/onclick handler was found on a <div> or <span> with no
+      tabIndex or keyboard event handler nearby.
+    file_types: [".html", ".jsx", ".tsx", ".vue"]
+    pattern: "<(div|span)[^>]*(onClick|onclick)="
+    negative_pattern: "(tabIndex|tabindex|onKeyDown|onKeyPress|role=[\"']button)"
+    severity: 3
+    likelihood: 3
+    confidence_base: 0.55
+    fine_range: [0, 75000]
+    remediation: >
+      Use a native <button> instead, or add tabIndex="0", role="button", and
+      an onKeyDown handler for Enter/Space.
+    last_verified: "2026-06-01"

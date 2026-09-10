@@ -1,0 +1,42 @@
+regulation: PIPEDA
+jurisdiction: [CA]
+rules:
+  - id: pipeda-001
+    title: Personal data collected without identified purpose nearby
+    clause: "PIPEDA Principle 4.2 - Identifying Purposes"
+    description: >
+      A signup/registration handler collects personal data fields with no
+      nearby reference to a stated purpose or privacy-policy link, which
+      PIPEDA's Fair Information Principles require be identified at or
+      before collection.
+    file_types: [".py", ".js", ".ts"]
+    pattern: "(def create_user|router\\.post\\(.[\"']\\/signup|app\\.post\\(.[\"']\\/register)"
+    negative_pattern: "(privacy_policy|purpose_statement|consent_purpose)"
+    severity: 3
+    likelihood: 3
+    confidence_base: 0.3
+    fine_range: [0, 100000]
+    remediation: >
+      State the purpose for collecting each category of personal
+      information at or before collection (e.g. in the form UI or an
+      accompanying privacy notice), per PIPEDA Principle 4.2.
+    last_verified: "2026-09-10"
+
+  - id: pipeda-002
+    title: No data deletion / withdrawal-of-consent endpoint found
+    clause: "PIPEDA Principle 4.3.8 - Withdrawing consent"
+    description: >
+      No route or handler matching common "delete my data" / "withdraw
+      consent" patterns was found in the API layer.
+    file_types: [".py", ".js", ".ts", ".go"]
+    pattern: "(def create_user|router\\.post\\(.[\"']\\/signup)"
+    negative_pattern: "(delete_user|withdraw_consent|deleteAccount)"
+    severity: 3
+    likelihood: 2
+    confidence_base: 0.3
+    fine_range: [0, 100000]
+    remediation: >
+      Provide a way for individuals to withdraw consent and have their
+      data deleted or anonymized, subject to legal/contractual
+      restrictions, per PIPEDA Principle 4.3.8.
+    last_verified: "2026-09-10"

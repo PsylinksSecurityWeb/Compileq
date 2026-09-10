@@ -1,0 +1,29 @@
+name: Compileq CI (internal)
+
+# Runs on Psylinks Security Private Limited's private repository/runners.
+# Do not enable on a public mirror — Compileq is proprietary software.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: pip install -r scanner/requirements.txt
+      - name: Validate rule schema (all rules load without error)
+        run: python -c "from scanner import kb_loader; import os; kb_loader.load_rules('rules'); print('OK')"
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Run scanner on its own fixtures (smoke test)
+        run: python -m scanner.cli scan tests/fixtures --markets EU,US-CA,US

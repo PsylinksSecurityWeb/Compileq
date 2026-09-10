@@ -1,0 +1,29 @@
+[project]
+name = "compileq"
+version = "0.3.0"
+description = "Compileq — proprietary AI skill / MCP server that scans codebases for GDPR, CCPA, WCAG, PCI-DSS, HIPAA, EU AI Act, LGPD, COPPA, and PIPEDA compliance gaps. Built by Psylinks Security Private Limited (psylinkssecurity.com)."
+readme = "README.md"
+license = { text = "Proprietary - Psylinks Security Private Limited. See LICENSE." }
+authors = [
+    { name = "Psylinks Security Private Limited", email = "contact@psylinkssecurity.com" },
+]
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+Homepage = "https://psylinkssecurity.com"
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.0.0,<2.0.0"]
+
+[project.scripts]
+compileq = "scanner.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["scanner"]

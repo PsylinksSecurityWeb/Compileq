@@ -1,0 +1,41 @@
+regulation: COPPA
+jurisdiction: [US]
+rules:
+  - id: coppa-001
+    title: Age gate / birthdate collection without parental consent flow
+    clause: "COPPA 16 CFR Part 312 - Parental consent requirement"
+    description: >
+      Code collects a date-of-birth or age field (common pattern for
+      under-13 detection) with no nearby parental-consent handling, despite
+      the product plausibly targeting or being accessible to children.
+    file_types: [".py", ".js", ".ts", ".jsx", ".tsx"]
+    pattern: "(date_of_birth|dateOfBirth|birthdate|user_age)\\s*[:=]"
+    negative_pattern: "(parental_consent|parentalConsent|verifiable_consent|COPPA)"
+    severity: 4
+    likelihood: 2
+    confidence_base: 0.3
+    fine_range: [51744, 51744]
+    remediation: >
+      If the service is directed at or knowingly collects data from
+      children under 13, implement verifiable parental consent before
+      collecting personal information, per the FTC's COPPA Rule.
+    last_verified: "2026-09-10"
+
+  - id: coppa-002
+    title: Tracking/ad SDK present with no under-13 handling
+    clause: "COPPA 16 CFR Part 312.5 - Parental consent for data collection"
+    description: >
+      A third-party ad or analytics SDK is initialized with no nearby
+      logic branching on user age or a "directed to children" flag.
+    file_types: [".js", ".ts", ".swift", ".kt", ".java"]
+    pattern: "(AdMob|AppLovin|Unity Ads|admob\\.|facebookAds\\.)"
+    negative_pattern: "(isChildDirected|coppaCompliant|under13|ageGate)"
+    severity: 3
+    likelihood: 2
+    confidence_base: 0.25
+    fine_range: [51744, 51744]
+    remediation: >
+      If any users may be under 13, configure ad/analytics SDKs in their
+      child-directed / limited-data-collection mode and avoid behavioral
+      advertising to that audience.
+    last_verified: "2026-09-10"

@@ -1,0 +1,40 @@
+regulation: EU_AI_Act
+jurisdiction: [EU]
+rules:
+  - id: aiact-001
+    title: Automated decision/scoring logic without human-oversight marker
+    clause: "EU AI Act Art. 14 - Human oversight (high-risk systems)"
+    description: >
+      Code implementing scoring/ranking/approval decisions about people
+      (credit_score, hiring_score, risk_score, eligibility) was found with
+      no nearby human-review/override marker.
+    file_types: [".py", ".js", ".ts", ".java"]
+    pattern: "(credit_score|hiring_score|eligibility_score|risk_score)\\s*="
+    negative_pattern: "(human_review|manual_override|requires_approval|reviewed_by)"
+    severity: 4
+    likelihood: 2
+    confidence_base: 0.3
+    fine_range: [7500000, 35000000]
+    remediation: >
+      For high-risk automated decisions about individuals (credit, hiring,
+      access to essential services), add a documented human-in-the-loop
+      review/override step and a disclosure to the affected person.
+    last_verified: "2026-06-01"
+
+  - id: aiact-002
+    title: AI-generated content without disclosure marker
+    clause: "EU AI Act Art. 50 - Transparency obligations"
+    description: >
+      A call to a generative AI API (OpenAI, Anthropic, generate, complete)
+      produces user-facing content with no nearby disclosure/label logic.
+    file_types: [".py", ".js", ".ts"]
+    pattern: "(openai\\.|anthropic\\.|\\.generate\\(|\\.complete\\()"
+    negative_pattern: "(ai_generated_label|disclosure|watermark)"
+    severity: 2
+    likelihood: 3
+    confidence_base: 0.25
+    fine_range: [7500000, 35000000]
+    remediation: >
+      Label AI-generated or AI-modified content shown to end users, per Art.
+      50 transparency obligations, especially for synthetic media.
+    last_verified: "2026-06-01"

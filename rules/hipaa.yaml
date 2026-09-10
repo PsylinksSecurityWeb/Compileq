@@ -1,0 +1,40 @@
+regulation: HIPAA
+jurisdiction: [US]
+rules:
+  - id: hipaa-001
+    title: PHI-shaped field stored without encryption marker
+    clause: "45 CFR 164.312(a)(2)(iv) - Encryption and Decryption"
+    description: >
+      A field name suggesting Protected Health Information (diagnosis,
+      medical_record, prescription, patient_notes) is written to storage
+      without an encryption call nearby.
+    file_types: [".py", ".js", ".ts", ".java", ".go"]
+    pattern: "(diagnosis|medical_record|prescription|patient_notes)\\s*[:=]"
+    negative_pattern: "(encrypt|hash|kms\\.|cipher)"
+    severity: 5
+    likelihood: 2
+    confidence_base: 0.35
+    fine_range: [100, 1900000]
+    remediation: >
+      Encrypt PHI at rest and in transit, restrict access via role-based
+      controls, and ensure audit logging of access per the HIPAA Security
+      Rule.
+    last_verified: "2026-06-01"
+
+  - id: hipaa-002
+    title: PHI potentially sent to a non-BAA-covered third party
+    clause: "45 CFR 164.502(e) - Business Associate Agreements"
+    description: >
+      PHI-shaped data appears to be sent to a common third-party analytics/
+      support endpoint with no nearby reference to a BAA.
+    file_types: [".py", ".js", ".ts"]
+    pattern: "(intercom|segment\\.io|mixpanel|sentry)\\.[a-zA-Z_]*\\(.*(diagnosis|patient|medical)"
+    negative_pattern: "(baa_covered|business_associate_agreement)"
+    severity: 5
+    likelihood: 2
+    confidence_base: 0.3
+    fine_range: [100, 1900000]
+    remediation: >
+      Confirm a signed Business Associate Agreement exists with any vendor
+      that could receive PHI, or strip PHI before sending.
+    last_verified: "2026-06-01"

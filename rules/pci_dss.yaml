@@ -1,0 +1,40 @@
+regulation: PCI-DSS
+jurisdiction: [Global]
+rules:
+  - id: pci-001
+    title: Card number pattern near a database/log write
+    clause: "PCI-DSS Req. 3 - Protect stored cardholder data"
+    description: >
+      A variable/field named like a card number (card_number, cc_number,
+      pan, credit_card) appears near a database save or logging call. Cards
+      should generally never touch your own storage — use a tokenized
+      processor (Stripe, Braintree, etc.).
+    file_types: [".py", ".js", ".ts", ".java", ".go", ".rb"]
+    pattern: "(card_number|cc_number|credit_card|\\bpan\\b)\\s*[:=]"
+    negative_pattern: "(token|stripe\\.|braintree\\.|last4|redacted)"
+    severity: 5
+    likelihood: 2
+    confidence_base: 0.4
+    fine_range: [5000, 100000]
+    remediation: >
+      Never store or log raw PANs. Use a PCI-compliant tokenized payment
+      processor and only ever handle the returned token / last-4 digits.
+    last_verified: "2026-06-01"
+
+  - id: pci-002
+    title: Card data potentially written to application logs
+    clause: "PCI-DSS Req. 3.4 / 10 - Logging"
+    description: >
+      A logging call (console.log, logger.info, print) appears on the same
+      or adjacent line as a card-shaped variable.
+    file_types: [".py", ".js", ".ts", ".java"]
+    pattern: "(console\\.log|logger\\.(info|debug)|print)\\(.*(card|cvv|cvc)"
+    negative_pattern: "(redacted|masked|last4)"
+    severity: 5
+    likelihood: 2
+    confidence_base: 0.5
+    fine_range: [5000, 100000]
+    remediation: >
+      Strip or mask card fields before logging. Never log CVV/CVC under any
+      circumstance (it cannot be stored at all per PCI-DSS).
+    last_verified: "2026-06-01"

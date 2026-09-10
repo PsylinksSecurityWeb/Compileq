@@ -1,0 +1,42 @@
+regulation: LGPD
+jurisdiction: [BR]
+rules:
+  - id: lgpd-001
+    title: Tracking script loads before consent (LGPD basis)
+    clause: "LGPD Art. 7 - Requirements for processing personal data"
+    description: >
+      A tracking/analytics/ad script loads unconditionally rather than
+      after a consent or other lawful-basis decision, similar to the GDPR
+      consent requirement but under Brazil's LGPD.
+    file_types: [".html", ".js", ".jsx", ".ts", ".tsx"]
+    pattern: "(gtag\\(|googletagmanager\\.com|fbq\\(|connect\\.facebook\\.net|hotjar|mixpanel\\.init)"
+    negative_pattern: "(consent|lgpdConsent|hasConsent|baseLegal)"
+    severity: 4
+    likelihood: 3
+    confidence_base: 0.5
+    fine_range: [1600, 9600000]
+    remediation: >
+      Establish and document one of LGPD's ten lawful bases (Art. 7) before
+      processing, and gate non-essential tracking behind a consent decision
+      where consent is the chosen basis.
+    last_verified: "2026-09-10"
+
+  - id: lgpd-002
+    title: No data deletion / data subject rights endpoint found
+    clause: "LGPD Art. 18 - Rights of the data subject"
+    description: >
+      No route or handler matching common "delete my data" / "access my
+      data" patterns was found, despite user signup/registration code
+      existing.
+    file_types: [".py", ".js", ".ts", ".go", ".rb"]
+    pattern: "(def create_user|router\\.post\\(.[\"']\\/signup|app\\.post\\(.[\"']\\/register)"
+    negative_pattern: "(delete_user|deleteAccount|export_user_data|titular)"
+    severity: 4
+    likelihood: 3
+    confidence_base: 0.4
+    fine_range: [1600, 9600000]
+    remediation: >
+      Provide a mechanism for data subjects (titulares) to confirm
+      processing, access, correct, anonymize, or delete their data per
+      Art. 18, and respond within statutory timelines.
+    last_verified: "2026-09-10"

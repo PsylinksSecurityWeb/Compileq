@@ -1,0 +1,4 @@
+# Pinned to the 1.x line for the FastMCP API used in server.py.
+# If you're on mcp>=2.0, see the migration note at the top of server.py.
+mcp>=1.0.0,<2.0.0
+PyYAML>=6.0

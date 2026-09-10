@@ -1,0 +1,78 @@
+regulation: GDPR
+jurisdiction: [EU]
+rules:
+  - id: gdpr-001
+    title: Tracking script loads before consent
+    clause: "Art. 6/7 - Lawful basis & conditions for consent"
+    description: >
+      A tracking/analytics/ad script (Google Analytics, Meta Pixel, etc.)
+      appears to load unconditionally rather than after a consent decision.
+    file_types: [".html", ".js", ".jsx", ".ts", ".tsx"]
+    pattern: "(gtag\\(|googletagmanager\\.com|fbq\\(|connect\\.facebook\\.net|hotjar|mixpanel\\.init)"
+    negative_pattern: "(consent|gdprConsent|cookieConsent|hasConsent|CookieYes|OneTrust)"
+    severity: 4
+    likelihood: 4
+    confidence_base: 0.6
+    fine_range: [5000, 20000000]
+    remediation: >
+      Gate the script load behind an explicit consent check (e.g. only call
+      gtag/fbq/init after the user accepts a cookie/consent banner). Log the
+      consent decision with a timestamp.
+    last_verified: "2026-06-01"
+
+  - id: gdpr-002
+    title: No data deletion / DSAR endpoint found
+    clause: "Art. 17 - Right to erasure"
+    description: >
+      No route or handler matching common "delete my data" / "export my
+      data" patterns was found in the API layer.
+    file_types: [".py", ".js", ".ts", ".go", ".rb"]
+    pattern: "(def create_user|router\\.post\\(.[\"']\\/signup|app\\.post\\(.[\"']\\/register)"
+    negative_pattern: "(delete_user|deleteAccount|\\/dsar|\\/gdpr|export_user_data|right_to_erasure)"
+    severity: 5
+    likelihood: 3
+    confidence_base: 0.4
+    fine_range: [10000, 20000000]
+    remediation: >
+      Add an authenticated endpoint that deletes or anonymizes a user's
+      personal data on request, and a corresponding data-export endpoint.
+      Document the process in your privacy policy.
+    last_verified: "2026-06-01"
+
+  - id: gdpr-003
+    title: Plaintext storage of personal data field
+    clause: "Art. 32 - Security of processing"
+    description: >
+      A field name suggesting sensitive personal data (email, ssn, dob,
+      passport, national_id) is written to storage/logs without an
+      encryption or hashing call nearby.
+    file_types: [".py", ".js", ".ts", ".java", ".go"]
+    pattern: "(ssn|national_id|passport_number|date_of_birth)\\s*[:=]"
+    negative_pattern: "(encrypt|hash|bcrypt|argon2|cipher|kms\\.)"
+    severity: 5
+    likelihood: 2
+    confidence_base: 0.35
+    fine_range: [10000, 20000000]
+    remediation: >
+      Encrypt sensitive fields at rest (application-level or column-level
+      encryption) and ensure they are never written to plaintext logs.
+    last_verified: "2026-06-01"
+
+  - id: gdpr-004
+    title: Third-party data sharing without documented basis
+    clause: "Art. 6 & 28 - Lawful basis / processor obligations"
+    description: >
+      Personal-data-shaped objects (user, email, profile) are sent to a
+      third-party HTTP endpoint with no nearby reference to a data
+      processing agreement or consent check.
+    file_types: [".py", ".js", ".ts"]
+    pattern: "(requests\\.post\\(.*(user|email|profile)|fetch\\(.*(user|email|profile).*method:\\s*[\"']POST)"
+    negative_pattern: "(dpa_reference|processor_agreement|consent_required)"
+    severity: 3
+    likelihood: 3
+    confidence_base: 0.3
+    fine_range: [5000, 20000000]
+    remediation: >
+      Confirm a Data Processing Agreement exists with the third party, and
+      only send the minimum personal data necessary for the stated purpose.
+    last_verified: "2026-06-01"

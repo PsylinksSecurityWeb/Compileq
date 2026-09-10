@@ -1,0 +1,213 @@
+# Official regulator/source registry.
+#
+# This is the allowlist for the out-of-knowledge fallback protocol
+# (scanner/web_lookup.py). When the scanner or the host AI needs to verify
+# or research a regulation, it should ONLY treat these domains as
+# authoritative — never a law firm blog, "compliance platform" marketing
+# page, or aggregator site, even if it ranks higher in search results.
+#
+# Each entry:
+#   code: internal short code (matches rules/*.yaml `regulation:` where one exists)
+#   name: full name
+#   jurisdiction: country/region code(s)
+#   regulator: the enforcing authority's name
+#   official_domains: ONLY these domains are treated as authoritative
+#   has_active_rules: whether rules/<code>.yaml exists with pattern rules yet
+#   verified_date: when this registry entry was last checked
+#
+# Contributing a new entry: verify the domain is genuinely the government/
+# regulator's own site (not a private "compliance guide" site with a
+# similar name), then open a PR. See CONTRIBUTING.md.
+
+sources:
+  - code: GDPR
+    name: General Data Protection Regulation
+    jurisdiction: [EU, EEA]
+    regulator: European Data Protection Board / national DPAs
+    official_domains: ["eur-lex.europa.eu", "edpb.europa.eu"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: UK_GDPR
+    name: UK GDPR / Data Protection Act 2018
+    jurisdiction: [UK]
+    regulator: Information Commissioner's Office (ICO)
+    official_domains: ["ico.org.uk", "legislation.gov.uk"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: CCPA
+    name: California Consumer Privacy Act / CPRA
+    jurisdiction: [US-CA]
+    regulator: California Privacy Protection Agency / California AG
+    official_domains: ["cppa.ca.gov", "oag.ca.gov"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: HIPAA
+    name: Health Insurance Portability and Accountability Act
+    jurisdiction: [US]
+    regulator: US Department of Health and Human Services (HHS)
+    official_domains: ["hhs.gov"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: COPPA
+    name: Children's Online Privacy Protection Act
+    jurisdiction: [US]
+    regulator: Federal Trade Commission (FTC)
+    official_domains: ["ftc.gov"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: GLBA
+    name: Gramm-Leach-Bliley Act
+    jurisdiction: [US]
+    regulator: Federal Trade Commission (FTC)
+    official_domains: ["ftc.gov"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: FERPA
+    name: Family Educational Rights and Privacy Act
+    jurisdiction: [US]
+    regulator: US Department of Education
+    official_domains: ["studentprivacy.ed.gov", "ed.gov"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: SOX
+    name: Sarbanes-Oxley Act
+    jurisdiction: [US]
+    regulator: Securities and Exchange Commission (SEC)
+    official_domains: ["sec.gov"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: PCI-DSS
+    name: Payment Card Industry Data Security Standard
+    jurisdiction: [Global]
+    regulator: PCI Security Standards Council
+    official_domains: ["pcisecuritystandards.org"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: WCAG
+    name: Web Content Accessibility Guidelines
+    jurisdiction: [Global]
+    regulator: World Wide Web Consortium (W3C) / Web Accessibility Initiative
+    official_domains: ["w3.org"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: ADA
+    name: Americans with Disabilities Act (Title III, web application)
+    jurisdiction: [US]
+    regulator: US Department of Justice
+    official_domains: ["ada.gov"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: EU_AI_Act
+    name: EU Artificial Intelligence Act
+    jurisdiction: [EU]
+    regulator: European Commission / AI Office
+    official_domains: ["eur-lex.europa.eu", "digital-strategy.ec.europa.eu"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: LGPD
+    name: Lei Geral de Proteção de Dados
+    jurisdiction: [BR]
+    regulator: Autoridade Nacional de Proteção de Dados (ANPD)
+    official_domains: ["gov.br"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: PIPEDA
+    name: Personal Information Protection and Electronic Documents Act
+    jurisdiction: [CA]
+    regulator: Office of the Privacy Commissioner of Canada
+    official_domains: ["priv.gc.ca"]
+    has_active_rules: true
+    verified_date: "2026-09-10"
+
+  - code: POPIA
+    name: Protection of Personal Information Act
+    jurisdiction: [ZA]
+    regulator: Information Regulator (South Africa)
+    official_domains: ["inforegulator.org.za"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: PDPA_SG
+    name: Personal Data Protection Act (Singapore)
+    jurisdiction: [SG]
+    regulator: Personal Data Protection Commission (PDPC)
+    official_domains: ["pdpc.gov.sg"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: DPDP
+    name: Digital Personal Data Protection Act, 2023
+    jurisdiction: [IN]
+    regulator: Ministry of Electronics and Information Technology (MeitY)
+    official_domains: ["meity.gov.in"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: PIPL
+    name: Personal Information Protection Law
+    jurisdiction: [CN]
+    regulator: Cyberspace Administration of China (CAC)
+    official_domains: ["cac.gov.cn"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: APPI
+    name: Act on the Protection of Personal Information
+    jurisdiction: [JP]
+    regulator: Personal Information Protection Commission (PPC)
+    official_domains: ["ppc.go.jp"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: PIPA_KR
+    name: Personal Information Protection Act (South Korea)
+    jurisdiction: [KR]
+    regulator: Personal Information Protection Commission (PIPC)
+    official_domains: ["pipc.go.kr"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: AU_PRIVACY
+    name: Privacy Act 1988
+    jurisdiction: [AU]
+    regulator: Office of the Australian Information Commissioner (OAIC)
+    official_domains: ["oaic.gov.au"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: NDPA
+    name: Nigeria Data Protection Act / Regulation
+    jurisdiction: [NG]
+    regulator: Nigeria Data Protection Commission (NDPC)
+    official_domains: ["ndpc.gov.ng"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: SOC2
+    name: SOC 2 (Trust Services Criteria)
+    jurisdiction: [Global]
+    regulator: American Institute of CPAs (AICPA)
+    official_domains: ["aicpa-cima.com", "aicpa.org"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
+
+  - code: ISO27001
+    name: ISO/IEC 27001 (Information Security Management)
+    jurisdiction: [Global]
+    regulator: International Organization for Standardization (ISO)
+    official_domains: ["iso.org"]
+    has_active_rules: false
+    verified_date: "2026-09-10"
